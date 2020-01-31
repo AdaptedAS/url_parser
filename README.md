@@ -55,7 +55,18 @@ from url_parser import parse_url
 url = parse_url('https://open.prospecta.app/my_user_login?user=url-parser&password=H3ll0')
 
 print(url)
-# Outputs: {'protocol': 'https', 'www': None, 'sub_domain': 'open', 'domain': 'prospecta', 'top_domain': 'app', 'dir': None, 'file': 'my_user_login', 'fragment': None, 'query': {'user': 'url-parser', 'password': 'H3ll0'}, 'path': '/my_user_login'}
+# Outputs: {
+    'protocol': 'https'
+    'www': None,
+    'sub_domain': 'open',
+    'domain': 'prospecta',
+    'top_domain': 'app',
+    'dir': None,
+    'file': 'my_user_login',
+    'fragment': None,
+    'query': {'user': 'url-parser', 'password': 'H3ll0'},
+    'path': '/my_user_login'
+    }
 
 protocol = url['protocol']
 sub_domain = url['sub_domain']
