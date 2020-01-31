@@ -93,8 +93,8 @@ python -m unittest url_parser.tests.test_url_parser.TestUrlParser
 
 
 #### Versions:
-v 2.0.0 | Added new regex and support for foreign languages
-v 1.0.0 | Small bugfixes and optimisation for stable release
+v 2.0.0 | Added new regex and support for foreign languages  
+v 1.0.0 | Small bugfixes and optimisation for stable release  
 v 0.9.9 | Bugfixes on the readme file.  
 v 0.9.8 | Added support for args.  
 v 0.9.7 | Changed setup.py and readme for PyPi optimisation.  
