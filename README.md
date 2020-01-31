@@ -1,11 +1,8 @@
 # URL Parser
-![PyPI - Format](https://img.shields.io/pypi/format/url-parser?style=plastic)
-![PyPI - Status](https://img.shields.io/pypi/status/url-parser?style=plastic)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/url-parser?style=plastic)
-
-![PyPI - Downloads](https://img.shields.io/pypi/dm/url-parser?style=plastic)
-![PyPI - Downloads](https://img.shields.io/pypi/dw/url-parser?style=plastic)
-![PyPI - Downloads](https://img.shields.io/pypi/dd/url-parser?style=plastic)
+![PyPI - Format](https://img.shields.io/pypi/format/url-parser)
+![PyPI - Status](https://img.shields.io/pypi/status/url-parser)
+![Downloads](https://pepy.tech/badge/url-parser)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/url-parser)
 
 A small yet nice package to help you parse all types of URL's and return the parsed URL in groups.
 ### Installation
