@@ -12,7 +12,7 @@ pip install url-parser
 
 ### Usage
 
-```
+```python
 from url_parser import parse_url
 
 
@@ -48,7 +48,7 @@ Here is a list of all the available keywords:
 
 Here is an example of using keywords.
 
-```
+```python
 from url_parser import parse_url
 
 
