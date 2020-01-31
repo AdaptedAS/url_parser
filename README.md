@@ -65,22 +65,22 @@ file = url['file']
 query = url['query']
 
 print(protocol)
->>> https
+# Outputs: https
 
 print(sub_domain)
->>> open
+# Outputs: open
 
 print(domain)
->>> prospecta
+# Outputs: prospecta
 
 print(top_domain)
->>> app
+# Outputs: app
 
 print(file)
->>> 'my_user_login'
+# Outputs: 'my_user_login'
 
 print(query)
->>> {'user': 'url-parser', 'password': 'H3ll0'}
+# Outputs: {'user': 'url-parser', 'password': 'H3ll0'}
 ```
 
 ### Testing
