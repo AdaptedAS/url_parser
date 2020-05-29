@@ -1,11 +1,11 @@
-# URL Parser
+# Python URL Parser
 ![PyPI - Format](https://img.shields.io/pypi/format/url-parser)
 ![PyPI - Status](https://img.shields.io/pypi/status/url-parser)
 ![Downloads](https://pepy.tech/badge/url-parser)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/url-parser)
 
-A small yet nice package to help you parse all types of URL's and return the parsed URL in groups.<br />
-To not brake the API `parse_url` (returns a dict) still works and we made a new function to get the url parts as as object instead called `get_url`.
+A nice package to help you parse all types of URL's in vanilla python and return the parsed URL in groups.<br />
+To not brake the API `parse_url` (returns a dict) still works and we made `get_url` to get the url parts as as object instead.
 <br />
 In version 2.1 we also included `get_basic_url` a small yet neat function to get a the main url back from a string
 ### Installation
@@ -63,6 +63,7 @@ python -m unittest url_parser.tests.test_url_parser.TestUrlParser
 
 
 #### Versions:
+v 2.1.1 | Small fix for readme and Github actions <br />
 v 2.1.0 | Added function to get url back as Object. Also added a function to get the basics of a url returned  <br />
 v 2.0.0 | Added new regex and support for foreign languages  <br />
 v 1.0.0 | Small bugfixes and optimisation for stable release  <br />
