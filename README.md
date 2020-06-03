@@ -63,6 +63,7 @@ python -m unittest url_parser.tests.test_url_parser.TestUrlParser
 
 
 #### Versions:
+v 2.1.2 | Small fix top domains with 4 characters <br />
 v 2.1.1 | Small fix for readme and Github actions <br />
 v 2.1.0 | Added function to get url back as Object. Also added a function to get the basics of a url returned  <br />
 v 2.0.0 | Added new regex and support for foreign languages  <br />
