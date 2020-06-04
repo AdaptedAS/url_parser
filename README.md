@@ -5,9 +5,11 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/url-parser)
 
 A nice package to help you parse all types of URL's in vanilla python and return the parsed URL in groups.<br />
+
 To not brake the API `parse_url` (returns a dict) still works and we made `get_url` to get the url parts as as object instead.
-<br />
+
 In version 2.1 we also included `get_basic_url` a small yet neat function to get a the main url back from a string
+
 ### Installation
 ```
 pip install url-parser
@@ -16,26 +18,25 @@ pip install url-parser
 ### Usage
 
 ```python
-from url_parser import parse_url, get_url, get_basic_url
+from url_parser import parse_url, get_url, get_base_url
 
 
 url = parse_url('https://open.prospecta.app/my_user_login?user=url-parser&password=H3ll0') # returns url sections as a dict  
 url_object = get_url('https://open.prospecta.app/my_user_login?user=url-parser&password=H3ll0') # Does the same, bur returns a object  
-basic_url = get_basic_url('https://open.prospecta.app/my_user_login?user=url-parser&password=H3ll0') # Returns just the main url  
+basic_url = get_base_url('https://open.prospecta.app/my_user_login?user=url-parser&password=H3ll0') # Returns just the main url  
 
 print(url['domain']) # Outputs -> prospecta  
 print(url_object.domain) # Outputs -> prospecta  
 print(basic_url) # Outputs -> https://open.prospecta.app  
-
 ```
 
 ### Keywords `get_url` and `parse_url`
 
 When using the `parse_url` and `get_url` function, you get a dict (parse_url) or object (get_url) back with different parts of the URL.
 
-The different parts can be accessed by keywords like this:<br />
-`result['top_domain]` <- For `parse_url`<br />
-`result.top_domain` <- For `get_url`
+The different parts can be accessed by keywords:<br />
+For `parse_url` use: `result['top_domain]`<br />
+For `get_url` use: `result.top_domain`
 
 
 Here is a list of all the available keywords:
@@ -58,17 +59,9 @@ Here is a list of all the available keywords:
 Use the following command to run tests.
 
 ```bash
-python -m unittest url_parser.tests.test_url_parser.TestUrlParser
+python -m unittest url_parser.tests.test_url_parser
 ```
 
+### Changelog:
 
-#### Versions:
-v 2.1.2 | Small fix top domains with 4 characters <br />
-v 2.1.1 | Small fix for readme and Github actions <br />
-v 2.1.0 | Added function to get url back as Object. Also added a function to get the basics of a url returned  <br />
-v 2.0.0 | Added new regex and support for foreign languages  <br />
-v 1.0.0 | Small bugfixes and optimisation for stable release  <br />
-v 0.9.9 | Bugfixes on the readme file.  <br />
-v 0.9.8 | Added support for args.  <br />
-v 0.9.7 | Changed setup.py and readme for PyPi optimisation.  <br />
-v 0.9.6 | Added support for secondary top domain (like: co.uk, .parliament.uk, .gov.au).<br />
+See CHANGELOG.md
