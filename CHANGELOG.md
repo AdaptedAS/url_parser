@@ -1,5 +1,8 @@
 ### Changelog:
 
+##### v3.0.1
+* Fixed bug for not loading public_suffix_list.dat correctly.
+
 ##### v3.0.0
 * A lot of cleanup.
 * Added list from https://publicsuffix.org/ to find top domains more correct.

@@ -1,3 +1,6 @@
+import os
+
+
 class PublicSuffixList:
     _public_suffix_list = None
 
@@ -8,7 +11,10 @@ class PublicSuffixList:
 
         public_suffix_list = []
 
-        with open('public_suffix_list.dat', encoding='utf-8') as file:
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        dat_file = f'{dir_path}/../public_suffix_list.dat'
+
+        with open(dat_file, encoding='utf-8') as file:
             data = file.readlines()
 
             for line in data:
