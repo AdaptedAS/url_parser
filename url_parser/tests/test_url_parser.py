@@ -326,52 +326,52 @@ class TestGetUrl(TestCase):
 class TestGetBasicUrl(TestCase):
     def test_basic_url(self):
         url = 'http://example.com'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'http://example.com')
 
         url = 'https://example.com'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'https://example.com')
 
         url = 'https://www.example.com'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'https://www.example.com')
 
         url = 'example.com'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'http://example.com')
 
     def test_sub_domain_basic_url(self):
         url = 'http://mysubdomain.example.com'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'http://mysubdomain.example.com')
 
         url = 'https://mysubdomain.example.com'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'https://mysubdomain.example.com')
 
         url = 'ftp://mysubdomain.example.com'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'ftp://mysubdomain.example.com')
 
     def test_path_url(self):
         url = 'https://mysubdomain.example.com/path/to/wisdom'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'https://mysubdomain.example.com')
 
     def test_long_url(self):
         url = 'https://mysubdomain.example.com/path/to/wisdom?query=2&this=3'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'https://mysubdomain.example.com')
 
         url = 'https://www.example.com/path/to/wisdom?query=2&this=3'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'https://www.example.com')
 
         url = 'https://example.com/path/to/wisdom?query=2&this=3'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'https://example.com')
 
         url = 'example.com/path/to/wisdom?query=2&this=3'
-        result = url_parser.get_basic_url(url)
+        result = url_parser.get_base_url(url)
         self.assertEqual(result, 'http://example.com')
