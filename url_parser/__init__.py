@@ -34,40 +34,27 @@ def _split_query_group(query_groups: list) -> dict:
     return result
 
 
-def _parse_url_start(url):
-    regex_start = r"^(?:(?P<protocol>[\w\d]+)(?:\:\/\/))?" \
+def _parse_url_with_top_domain(url, top_domain):
+    regex = r"^(?:(?P<protocol>[\w\d]+)(?:\:\/\/))?" \
                   r"(?P<sub_domain>" \
                   r"(?P<www>(?:www)?)(?:\.?)" \
                   r"(?:(?:[\w\d-]+|\.)*?)?" \
                   r")(?:\.?)" \
-                  r"(?P<domain>[^./]+(?=\.))\.$"
+                  r"(?P<domain>[^./]+(?=\.))\." \
+                  r"(?P<top_domain>" + re.escape(top_domain) + r"(?![^/?#]))" \
+                  r"(?P<path>" \
+                  r"(?P<dir>\/(?:[^/\r\n]+(?:/))+)?" \
+                  r"(?:\/?)(?P<file>[^?#\r\n]+)?" \
+                  r")?" \
+                  r"(?:\#(?P<fragment>[^#?\r\n]*))?" \
+                  r"(?:\?(?P<query>.*(?=$)))*$"
 
     dict_data = {
         'protocol': None,
         'www': None,
         'sub_domain': None,
         'domain': None,
-    }
-
-    match = re.search(regex_start, url)
-
-    dict_data['protocol'] = match.group('protocol') if match.group('protocol') else None
-    dict_data['www'] = match.group('www') if match.group('www') else None
-    dict_data['sub_domain'] = match.group('sub_domain') if match.group('sub_domain') else None
-    dict_data['domain'] = match.group('domain')
-
-    return dict_data
-
-
-def _parse_url_end(url):
-    regex = r"^(?P<path>" \
-                r"(?P<dir>\/(?:[^/\r\n]+(?:/))+)?" \
-                r"(?:\/?)(?P<file>[^?#\r\n]+)?" \
-                r")?" \
-                r"(?:\#(?P<fragment>[^#?\r\n]*))?" \
-                r"(?:\?(?P<query>.*(?=$)))*$"
-
-    dict_data = {
+        'top_domain': None,
         'path': None,
         'dir': None,
         'file': None,
@@ -77,6 +64,11 @@ def _parse_url_end(url):
 
     match = re.search(regex, url)
 
+    dict_data['protocol'] = match.group('protocol') if match.group('protocol') else None
+    dict_data['www'] = match.group('www') if match.group('www') else None
+    dict_data['sub_domain'] = match.group('sub_domain') if match.group('sub_domain') else None
+    dict_data['domain'] = match.group('domain')
+    dict_data['top_domain'] = top_domain
     dict_data['path'] = match.group('path') if match.group('path') else None
     dict_data['dir'] = match.group('dir') if match.group('dir') else None
     dict_data['file'] = match.group('file') if match.group('file') else None
@@ -111,22 +103,9 @@ def _parse_url_with_public_suffix(url):
             top_domain = tail_gram
             break
 
-    exploded_url = url.split(top_domain)
-
-    start_data = _parse_url_start(exploded_url[0])
-    end_data = _parse_url_end(exploded_url[1])
-
-    data = {
-        **start_data,
-        'top_domain': top_domain,
-        **end_data
-    }
+    data = _parse_url_with_top_domain(url, top_domain)
 
     return data
-
-
-def _get_url_data(url):
-    return _parse_url_with_public_suffix(url)
 
 
 def get_base_url(url: str) -> str:
@@ -138,7 +117,7 @@ def get_base_url(url: str) -> str:
 
 
 def get_url(url: str) -> UrlObject:
-    data = _get_url_data(url)
+    data = _parse_url_with_public_suffix(url)
 
     object_data = UrlObject(
         protocol=data['protocol'],

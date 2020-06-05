@@ -1,6 +1,9 @@
 ### Changelog:
 
-##### v3.0.1
+##### v3.0.3
+* Fixed catastrophic backtracking and a small top domain bug.
+
+##### v3.0.2
 * Fixed bug for not loading public_suffix_list.dat correctly.
 
 ##### v3.0.0

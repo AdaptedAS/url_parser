@@ -162,6 +162,35 @@ class TestUrlParser(TestCase):
         self.assertEqual(result['query']['myquery'], 'test')
         self.assertEqual(result['query']['one'], 'two')
 
+    def test_catastrophic_backtracking(self):
+        url = 'http://very_long-and-complixated_subdomaind-for-page.mywebpageishere.com/'
+        result = url_parser.parse_url(url)
+        self.assertEqual(result['top_domain'], 'com')
+        self.assertEqual(result['domain'], 'mywebpageishere')
+        self.assertEqual(result['sub_domain'], 'very_long-and-complixated_subdomaind-for-page')
+
+    def test_domain_that_starts_with_same_letters_as_top_domain(self):
+        url = 'http://domains-stars-with-same-top-domain.nogo.no/'
+        result = url_parser.parse_url(url)
+        self.assertEqual(result['top_domain'], 'no')
+        self.assertEqual(result['domain'], 'nogo')
+        self.assertEqual(result['sub_domain'], 'domains-stars-with-same-top-domain')
+
+    def test_domain_that_includes_a_top_domain_in_sub_domain(self):
+        url = 'http://test.com.hello.nogo.no/'
+        result = url_parser.parse_url(url)
+        self.assertEqual(result['top_domain'], 'no')
+        self.assertEqual(result['domain'], 'nogo')
+        self.assertEqual(result['sub_domain'], 'test.com.hello')
+
+    def test_domain_that_includes_a_top_domain_in_query(self):
+        url = 'http://test.com.hello.nogo.no?my_query_domain=www.test.com'
+        result = url_parser.parse_url(url)
+        self.assertEqual(result['top_domain'], 'no')
+        self.assertEqual(result['domain'], 'nogo')
+        self.assertEqual(result['sub_domain'], 'test.com.hello')
+        self.assertEqual(result['query']['my_query_domain'], 'www.test.com')
+
 
 class TestGetUrl(TestCase):
     def test_parses_url_without_www(self):
